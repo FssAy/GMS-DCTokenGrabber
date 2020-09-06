@@ -3,14 +3,14 @@
 
 Simple extension for *[GameMaker Studio 2](https://www.yoyogames.com/gamemaker/features)* to get Discord tokens from given path. 
 
-Made only for educational purpose!
-Be aware that author of this extension is **NOT** responisble for your actions!
+Made only for educational purpose! <br>
+Be aware that author of this extension is **NOT** responisble for your actions! <br>
 Using it in harmful way is against [Discord](https://discord.com/terms) and [YoYo](https://www.yoyogames.com/legal/eula) ToS, as well as for some of the local laws!
 
 ## Installation
 ****
 
-Go to Releases, download one of two packages and drag them onto your GMS2 project window.
+Go to Releases, download one of two packages and drag them onto your GMS2 project window. <br>
 Click [here](https://docs2.yoyogames.com/source/_build/2_interface/2_extras/local_asset_packages.html) if you need better clarification.
 
 ## Usage
@@ -24,7 +24,7 @@ If the return value is an empty string, it means that no tokens were found.
 
 ## Version explanation
 ****
-**Extension -** Made by creating GMS extension. Supposedly more efficient and error friendly.
+**Extension -** Made by creating GMS extension. Supposedly more efficient and error friendly. <br>
 **Scripted -** Made only by using scripts and functions. Allows changng DLL name or path and require init function.
 
 ## Examples
@@ -52,5 +52,5 @@ show_debug_message(tokens);
 
 ## Notes
 ****
-GMS project doesn't requie sandboxed file system to be turned off.
+GMS project doesn't requie sandboxed file system to be turned off. <br>
 I recomend using my [webhook extension](https://github.com/DmitrijVC/DiscordWebhook-GMS2.3Beta) along with this one.
