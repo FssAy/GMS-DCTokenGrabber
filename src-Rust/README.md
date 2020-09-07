@@ -26,6 +26,6 @@ encoding = "0.2.33"
 ```
 
 ## Notes
-Grabber won't find any mfa tokens. (I don't fully understand *regex* crate). <br>
+Grabber won't find any mfa tokens. (I don't fully understand *regex* crate). **(FIXED)** <br>
 64bit version won't work for GameMaker Studio. <br>
 It is my second project in this language so code can be pretty bad. <br>
