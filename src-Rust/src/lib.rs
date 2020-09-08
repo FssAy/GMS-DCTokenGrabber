@@ -22,12 +22,12 @@ fn path_exists(path: String) -> Result<bool, String> {
         Ok(t) => metadata = t,
         Err(_) => return Err(format!("Error: Path doesn't exists [{}]", path))
     }
-    if metadata.is_file() {
-        return Err(format!("Error: Path is a file, not a directory! [{}]", path));
+    return if metadata.is_file() {
+        Err(format!("Error: Path is a file, not a directory! [{}]", path))
     } else if metadata.is_dir() {
-        return Ok(true)
+        Ok(true)
     } else {
-        return Err(format!("Error: Unknow error with path [{}]", path))
+        Err(format!("Error: Unknown error with path [{}]", path))
     }
 }
 
@@ -90,7 +90,7 @@ fn return_tokens(path: String) -> Result<String, String> {
 
 #[no_mangle]
 #[allow(non_snake_case, unused_variables)]
-pub extern "C" fn GetTokens(path: *const c_char) -> CString {
+pub extern "C" fn GetTokens(path: *const c_char) -> *mut c_char {
 
     let bytes = unsafe {
         CStr::from_ptr(path).to_bytes()
@@ -99,13 +99,13 @@ pub extern "C" fn GetTokens(path: *const c_char) -> CString {
     let path_str: &str;
     match str::from_utf8(bytes) {
         Ok(t) => path_str = t,
-        Err(_) => return CString::new("Error:").unwrap()
+        Err(_) => return CString::new("Error:").unwrap().into_raw()
     }
 
 
     let mut tokens_string: String;
-    match return_tokens(String::from(path_str)) {
-        Ok(tokens) => return CString::new(tokens.as_str()).unwrap(),
-        Err(e) => return CString::new(format!("Error: {}", e).as_str()).unwrap()
+    return match return_tokens(String::from(path_str)) {
+        Ok(tokens) => CString::new(tokens.as_str()).unwrap().into_raw(),
+        Err(e) => CString::new(format!("Error: {}", e).as_str()).unwrap().into_raw()
     }
 }
